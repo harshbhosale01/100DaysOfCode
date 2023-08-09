@@ -1,3 +1,19 @@
+## Day 1
+Today, I solved the problem [Remove Duplicates from sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) on Leetcode.
+- In this approach there will be two pointers, we will increment the pointer j in each iteration and copy the element at j to i if both elements are different, we will increment i pointer before copying.
+- What happens is if there are duplicated element then the pointer i does not move ahead while pointer j does, And when elements at both pointers are different the duplicated elemnet is replaced with element at j. 
+```cpp
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int len=nums.size(),i=0;
+        for(int j =1; j<len ;j++){
+            if(nums.at(i)!=nums.at(j)) nums.at(++i)=nums.at(j); 
+        }
+        return i+1;
+    }
+};
+```
 ## Day 5
 Today, I solved the problem [Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/) on Leetcode.
 ```cpp
@@ -25,6 +41,45 @@ public:
             }
             return 1;
         }
+    }
+};
+```
+## Day 6
+Today, I gave coding test for a consultancy firm. In which I was able to figure out solution for one problem, but I was encountered by segmentation fault. I need to work with Dynamic Initialisation of 2D array/vector to avoid such errors in future.
+
+## Day 7
+Today, I solved 2 problems based on array. 
+### [Rotate Array](https://leetcode.com/problems/rotate-array/)
+
+```cpp
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int len=nums.size(),i,j=0;
+        vector<int> nums1(len);
+        k=k%len;
+        for(i=len-k;i<len;i++){
+            nums1[j++]=nums[i];
+        }
+        i=0;
+        for(;j<len;j++){
+            nums1[j]=nums[i++];
+        }
+        nums=nums1;
+
+    }
+};
+```
+### [Move Zeros to End](https://leetcode.com/problems/move-zeroes/)
+```cpp
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+     int i=0,j=0;
+     while(j<nums.size()){
+         if(nums[j]!=0) swap(nums[i++],nums[j]);
+         j++;
+     }
     }
 };
 ```
