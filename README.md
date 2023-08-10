@@ -83,3 +83,83 @@ public:
     }
 };
 ```
+## Day 8
+
+Today, I solved 4 problems on arrays.
+## [Find the Union](https://www.codingninjas.com/studio/problems/sorted-array_6613259)
+```
+vector < int > sortedArray(vector < int > a, vector < int > b) {
+    // Write your code here
+    int i = 0, j = 0; // pointers
+    int n=a.size().m=b.size();
+  vector < int > Union;
+  while (i < n && j < m) {
+    if (a[i] <= b[j]) 
+    {
+      if (Union.size() == 0 || Union.back() != arr1[i])
+        Union.push_back(a[i]);
+      i++;
+    } else 
+    {
+      if (Union.size() == 0 || Union.back() != arr2[j])
+        Union.push_back(b[j]);
+      j++;
+    }
+  }
+  while (i < n) // IF any element left in arr1
+  {
+    if (Union.back() != a[i])
+      Union.push_back(a[i]);
+    i++;
+  }
+  while (j < m) // If any elements left in arr2
+  {
+    if (Union.back() != b[j])
+      Union.push_back(b[j]);
+    j++;
+  }
+  return Union;
+}
+```
+## [Find missing number in an Array](https://leetcode.com/problems/missing-number/)
+```
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int sum=0,len=nums.size(),actual_sum=0;
+        actual_sum =(len*(len+1))/2;
+        while(len){
+            sum+=nums[--len];
+        }
+        return (actual_sum-sum);
+    }
+};
+```
+## [Maximum Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)
+```
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int len=nums.size(),max_count=0,count=0;
+        while(len){
+            if(nums[--len]==1) count++;
+            else count=0;
+            if(max_count<count)max_count=count;
+        }
+        return max_count;
+    }
+};
+```
+## [Single Number](https://leetcode.com/problems/single-number/)
+```
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int exor=0,len=nums.size();
+        while(len){
+            exor^=nums[--len];
+        }
+        return exor;
+    }
+};
+```
