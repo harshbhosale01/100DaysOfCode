@@ -86,8 +86,8 @@ public:
 ## Day 8
 
 Today, I solved 4 problems on arrays.
-## [Find the Union](https://www.codingninjas.com/studio/problems/sorted-array_6613259)
-```
+### [Find the Union](https://www.codingninjas.com/studio/problems/sorted-array_6613259)
+```cpp
 vector < int > sortedArray(vector < int > a, vector < int > b) {
     // Write your code here
     int i = 0, j = 0; // pointers
@@ -121,8 +121,8 @@ vector < int > sortedArray(vector < int > a, vector < int > b) {
   return Union;
 }
 ```
-## [Find missing number in an Array](https://leetcode.com/problems/missing-number/)
-```
+### [Find missing number in an Array](https://leetcode.com/problems/missing-number/)
+```cpp
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
@@ -135,8 +135,8 @@ public:
     }
 };
 ```
-## [Maximum Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)
-```
+### [Maximum Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)
+```cpp
 class Solution {
 public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
@@ -150,8 +150,8 @@ public:
     }
 };
 ```
-## [Single Number](https://leetcode.com/problems/single-number/)
-```
+### [Single Number](https://leetcode.com/problems/single-number/)
+```cpp
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
@@ -162,4 +162,53 @@ public:
         return exor;
     }
 };
+```
+## Day 9
+Today, I solved 2 probelms based on Array.
+
+### [Longest Subarray With Sum K (Positive)](https://www.codingninjas.com/studio/problems/longest-subarray-with-sum-k_6682399)
+
+```cpp
+#include<bits/stdc++.h>
+int longestSubarrayWithSumK(vector<int> a, long long k) {
+    // Write your code here
+    int len= a.size(),arr_len=0,maxlen=0,i=0,j=0;
+    long long sum=a[0];
+    while(j<len){
+        
+        while (i<=j && sum > k) {
+            sum-=a[i];
+            i++;
+        }
+        if(sum==k){
+            maxlen=max(maxlen,j-i+1);
+        }
+        j++;
+        if(j<len) sum+=a[j];
+    }
+    return maxlen;
+}
+```
+
+### [Longest Subarray With Sum K (Positive and Negative)](https://www.codingninjas.com/studio/problems/longest-subarray-with-sum-k_5713505)
+
+```cpp
+#include <bits/stdc++.h> 
+int getLongestSubarray(vector<int>& nums, int k){
+    // Write your code here
+    int len= nums.size(),arr_len=0,maxlen=0;
+    int rem;
+    int sum=0;
+    map<int,int> umap;
+    for(int i=0;i<len;i++){
+        sum+=nums[i];
+        if(sum==k) maxlen=max(maxlen,i+1);
+         rem=sum-k;
+        if(umap.find(rem)!=umap.end()){
+            maxlen=max(maxlen,i-umap[rem]);
+        }
+        if(umap.find(sum)==umap.end()) umap[sum]=i;
+    }
+    return maxlen;
+}
 ```
