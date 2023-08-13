@@ -212,3 +212,32 @@ int getLongestSubarray(vector<int>& nums, int k){
     return maxlen;
 }
 ```
+
+## Day 10
+Today I solved the problem 'Sort an array of 0, 1 and 2' using Dutch National Flag approach.
+
+### [Sort an array of 0,1 and 2](https://leetcode.com/problems/sort-colors/description/)
+```cpp
+    class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int len=nums.size(),i=0,j=0,k=len-1;
+        while(j<=k){
+            if(nums[j]!=1){
+                if(nums[j]==0){
+                    //while(nums[i]==0 && i<j) i++;
+                    swap(nums[i],nums[j]);
+                    i++;
+                    j++;
+                }
+                else {
+                    //while(nums[k]==2 && k>j) k--;
+                    swap(nums[k],nums[j]);
+                    k--;
+                }
+            }
+            else j++;
+        }
+    }
+};
+```
