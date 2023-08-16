@@ -259,3 +259,22 @@ public:
     }
 };
 ```
+
+## DAY 12
+Today, I learned Kadanes's algorithm to find the maximum sum in an array.
+### [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/description/)
+```cpp
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int i=0, len=nums.size(),sum=0,maxi=INT_MIN;
+        while(i<len){
+            sum+=nums[i];
+            maxi=max(sum,maxi);
+            if(sum<0) sum=0;
+            i++;
+        }
+        return maxi;
+    }
+};
+```
