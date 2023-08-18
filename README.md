@@ -295,3 +295,53 @@ public:
     } 
 };
 ```
+
+## Day 14
+
+### [Rearrange-array-elements-by-sign](https://leetcode.com/problems/rearrange-array-elements-by-sign/)
+```cpp
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        int i=0,j=1,k=0;
+        vector <int> arr(nums.size(),0);
+        while(k<nums.size()){
+            if(nums[k]<0){
+                arr[j]=nums[k];
+                j=j+2;
+            }
+            else{
+                arr[i]=nums[k];
+                i=i+2;
+            }
+            k++;
+        }
+        return arr;
+    }
+
+};
+```
+
+### [Next Permutation](https://leetcode.com/problems/next-permutation/)
+```cpp
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int i,j,len=nums.size(),diff=INT_MAX,index;
+        for(i=len-2;i>0;i--){
+            diff=INT_MAX;
+            index=-1;
+            for(j=i+1;j<len;j++){
+                if((diff>(nums[j]-nums[i])) && ((nums[j]-nums[i])>0)) 
+                {
+                    diff=nums[j]-nums[i];
+                    index=j;
+                }
+            }
+            if(index!=-1) break;
+        }
+        swap(nums[i], nums[index]);
+        sort(nums.begin()+i+1,nums.end());
+    }
+};
+```
