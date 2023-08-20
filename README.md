@@ -345,3 +345,45 @@ public:
     }
 };
 ```
+## Day 15
+### [Leaders in an Array](https://www.codingninjas.com/studio/problems/superior-elements_6783446?leftPanelTab=1)
+```cpp
+    vector<int> superiorElements(vector<int>&a) {
+    // Write your code here.
+    int i=a.size()-1, max=INT_MIN;
+    vector <int> a1;
+    while(i>=0){
+        if(a[i]>max) {
+            a1.push_back(a[i]);
+            max=a[i];
+        }
+        i--;
+    }
+    return a1;
+}
+```
+
+### [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)
+```cpp
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        int con=0,max_con=0;
+        if(nums.size()==0) return 0; 
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size()-1;i++){
+            if(nums[i]-nums[i+1]==-1){
+                con++;
+            }
+            else if(nums[i]-nums[i+1]==0){
+                continue;
+            }
+            else {
+                con=0;
+            }
+            max_con=max(max_con,con);
+        }
+        return max_con+1;
+    }
+};
+```
