@@ -387,3 +387,59 @@ public:
     }
 };
 ```
+
+## Day 17
+
+### [Watermelon](https://codeforces.com/problemset/problem/4/A)
+```cpp
+#include <iostream>
+using namespace std;
+int main(){
+    int w;
+    cin>>w;
+    if(w<=2) cout<<"NO";
+    else if(w%2==0) cout<<"YES";
+    else cout<<"NO";
+    return 0;   
+}
+```
+
+### [Bit++](https://codeforces.com/problemset/problem/282/A)
+```cpp
+#include <iostream>
+using namespace std;
+int main(){
+    char str[3];
+    int n,count=0;
+    cin>>n;
+    while(n--){
+        cin>>str;
+        if(str[1]=='+') count++;
+        else count --;
+    }
+    cout<<count<<endl;
+}
+```
+
+### [Chewbaсca and Number](https://codeforces.com/contest/514/problem/A)
+```cpp  
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){
+    string num;
+    cin>>num;
+    int i=num.size()-1;
+    while(i>0){
+        if((*(num.begin()+i))>'4') {
+            *(num.begin()+i)=(('9'-(*(num.begin()+i)))+'0');
+        }
+        i--;
+    }
+    if(*num.begin()!='9' && *(num.begin())>'4') {
+        *(num.begin())=(('9'-(*(num.begin())))+'0');
+    }
+    cout<<num<<endl;
+    return 0;
+}
+```
