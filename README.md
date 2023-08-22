@@ -388,7 +388,7 @@ public:
 };
 ```
 
-## Day 17
+## Day 16
 
 ### [Watermelon](https://codeforces.com/problemset/problem/4/A)
 ```cpp
@@ -442,4 +442,61 @@ int main(){
     cout<<num<<endl;
     return 0;
 }
+```
+
+## Day 17 
+
+### [Beautiful Matrix](https://codeforces.com/contest/263/problem/A)
+```cpp
+#include <iostream>
+using namespace std;
+int main()
+{
+    int mat[5][5],i=0,j=0,result;
+    for(i=0;i<5;i++){
+        for(j=0;j<5;j++){
+            cin>>mat[i][j];
+            if(mat[i][j]==1) {
+                result=abs(2-i)+abs(2-j);
+            }
+        }
+    }
+    cout<<result<<endl;
+}
+```
+
+### [Soft Drinking](https://codeforces.com/contest/151/problem/A)
+```cpp
+#include<iostream>
+#include <algorithm>
+using namespace std;
+int main(){
+    int n,k,l,c,d,p,nl,np,result;  
+    cin>>n>>k>>l>>c>>d>>p>>nl>>np;
+    int x=(k*l)/nl;
+    int y=c*d;
+    int z=(p/np);
+    result=min(x,y);
+    result=min(result,z)/n;
+    cout<<result<<endl;
+    return 0;
+}
+```
+
+### [Rotate Image](https://leetcode.com/problems/rotate-image/description/)
+```cpp
+class Solution {
+public:
+    void rotate(vector<vector<int>>& matrix) {
+        int n=matrix.size(),i=0,j=0;
+        for(i=0;i<n;i++){
+            for(j=i+1;j<n;j++){
+                swap(matrix[i][j],matrix[j][i]);
+            }
+        }
+        for(i=0;i<n;i++){
+            reverse(matrix[i].begin(),matrix[i].end());
+        }
+    }
+};
 ```
