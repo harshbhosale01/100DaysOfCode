@@ -10,15 +10,6 @@ int main()
     {
         cin >> len;
         sum = 0;
-        /*if (len == 1)
-        {
-            cout << "NO0\n";
-            sum=0;
-            // break;
-            // continue;
-        }*/
-        //else
-       // {
             for (i = 0; i < len; i++)
             {
                 cin >> num;
