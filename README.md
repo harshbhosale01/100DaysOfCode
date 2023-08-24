@@ -500,3 +500,114 @@ public:
     }
 };
 ```
+
+## Day 18 
+
+### [Gift Carpet](https://codeforces.com/contest/1862/problem/A)
+```cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+int main()
+{
+    int num, n, m, i, j, c = 0,pass=0;
+    cin >> num;
+    string str = {'v', 'i', 'k', 'a'};
+    
+    while (num--)
+    {
+        c=0;
+        cin >> n; //row 
+        cin >> m; //column
+        char* vec= new char(n*m);
+        for (i = 0; i < n; i++)
+        {
+            for (j = 0; j < m; j++)
+            {
+                cin >> vec[i*m+j];
+            }
+        }
+        for (i = 0; i < m; i++) //column
+        {   
+            pass=0;
+            for (j = 0; j < n ; j++) //row
+            {   
+                if (vec[j*m+i] == str[c])
+                {
+                    pass=1;
+                    break;
+                }
+                if(c==4) break;
+            }
+            if(pass==1 && c<4) c++;
+        }
+        delete[] vec;
+        if(c==4) cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
+    }
+}
+```
+
+### [Sequmce Game](https://codeforces.com/contest/1862/problem/B)
+```cpp
+#include<iostream>
+#include<vector>
+using namespace std;
+int main(){
+    int num,bsize,i,m,n,element,temp;
+    cin>>num;
+    while(num--){
+        cin>>bsize;
+        vector<int> b;
+        vector<int> a;
+        for(i=0;i<bsize;i++){
+            cin>>element;
+            b.push_back(element);
+        }
+        a.push_back(b[0]);
+        m=0,n=1;
+        for(i=0;i<bsize-1;i++){
+            temp=b[i]-1;
+            if(b[i]-b[i+1]==0){
+                a.push_back(b[i+1]);
+            }
+            else{
+            while(temp>b[i+1]) temp--;
+            if(temp!=0) a.push_back(temp);
+            a.push_back(b[i+1]);
+            }
+        }
+        cout<<a.size()<<endl;
+        for(i=0;i<a.size();i++){
+            cout<<a[i]<<" ";
+        }
+        cout<<endl;
+        a.clear();
+        b.clear();
+    }
+}
+```
+
+### [Subarray sum equals k](https://leetcode.com/problems/subarray-sum-equals-k/description/)
+```cpp
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        map <int,int> set;
+        int i=0,len=nums.size(),count=0,x=0;
+        while(i<len){
+            x+=nums[i];
+            if(x==k) count++;
+            if(set.find(x-k)!=set.end()){
+                count=count+set[x-k];
+            }
+            if(set.find(x)==set.end()){
+                set[x]=1;
+            }
+            else set[x]++;
+            i++;
+        }
+        return count;
+    }
+};
+```
