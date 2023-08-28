@@ -614,7 +614,7 @@ public:
 
 ## Day 19
 
-### [Same Differences]()
+### [Same Differences](https://codeforces.com/contest/1520/problem/D)
 ```cpp
 #include <iostream>
 #include <vector>
@@ -646,7 +646,7 @@ return 0;
 
 ## Day 20
 
-### [Same Differences](https://codeforces.com/contest/1864/problem/A)
+### [Increasing and Decreasing](https://codeforces.com/contest/1864/problem/A)
 ```cpp
 #include <iostream>
 using namespace std;
@@ -672,5 +672,24 @@ int main(){
         }
     }
     return 0;
+}
+```
+
+## Day 21
+
+### [Implement Lower Bound](https://www.codingninjas.com/studio/problems/lower-bound_8165382?leftPanelTab=1)
+```cpp
+int lowerBound(vector<int> arr, int n, int x) {
+	// Write your code here
+	int low=0,mid,high=n-1,idx=n;
+	while(low<=high){
+		mid=(low+high)/2;
+                if (arr[mid] >= x) {
+				  high = mid - 1;
+				  idx=mid;
+                } 
+				else low = mid + 1;
+        }
+	return idx;
 }
 ```
