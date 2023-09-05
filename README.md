@@ -693,3 +693,45 @@ int lowerBound(vector<int> arr, int n, int x) {
 	return idx;
 }
 ```
+
+## Day 22
+
+### [Implement Upper Bound](https://www.codingninjas.com/studio/problems/implement-upper-bound_8165383)
+```cpp
+int upperBound(vector<int> &arr, int x, int n){
+	// Write your code here.	
+	int low=0,high=arr.size()-1,mid,idx=high+1;
+	while(low<=high){
+		mid=(low+high)/2;
+		if(arr[mid]>x){
+			high=mid-1;
+			idx=mid;
+		}
+		else low=mid+1;
+	}
+	return idx;
+}
+```
+
+### [Search Insert Position](https://leetcode.com/problems/search-insert-position/)
+```cpp
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+    int mid, low=0, high=nums.size()-1;
+    if(nums[0]>=target) return 0;
+    else if(nums[high]<=target) return high+1;
+    while(low!=high){
+    mid = (low + high)/2;
+    if (target == nums[mid])
+        return mid;
+    else if (target > nums[mid]) // x is on the right side
+        low = mid + 1;
+    else                       // x is on the left side
+        high = mid - 1;
+    }
+    return low+1;
+    }
+};
+```
+
