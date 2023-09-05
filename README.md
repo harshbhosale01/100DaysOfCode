@@ -735,3 +735,241 @@ public:
 };
 ```
 
+## Day 23
+
+### [Floor and Ceil in Array](https://www.codingninjas.com/studio/problems/ceiling-in-a-sorted-array_1825401)
+
+```cpp
+pair<int, int> getFloorAndCeil(int arr[], int n, int x) {
+	// Write your code here.
+	int i=0,low=INT_MIN,high=INT_MAX;
+	pair <int,int> PAIR1;
+	while(i<n){
+		if(arr[i]<=x) low=max(low,arr[i]);
+		if(arr[i]>=x) high=min(high,arr[i]);
+		i++;
+	}
+	//cout<<low<<" "<<high<<endl;
+	if(low!=INT_MIN) PAIR1.first=low;
+	else PAIR1.first=-1;
+	if(high!=INT_MAX) PAIR1.second=high;
+	else PAIR1.second=-1;
+	return PAIR1;
+}
+```
+
+### [First and Last position of element in sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
+```cpp
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int low=0,mid,high=nums.size()-1,pass=0,low_idx=-1,high_idx=-1;
+        vector <int> ans;
+        if(nums.size()==1 && nums[0]==target) {
+            ans.push_back(0);
+            ans.push_back(0);
+            return ans;
+        }
+        else if(nums.size()==1 && nums[0]!=target) {
+            ans.push_back(-1);
+            ans.push_back(-1);
+            return ans;
+        }
+        else{
+        while(low<=high){
+            mid=(low+high)/2;
+            if(nums[mid]==target) {
+                pass=1;
+                break;
+            }
+            else if(nums[mid]<target) low=mid+1;
+            else high=mid-1;
+        }
+        if(pass==1) {
+            low_idx=mid;
+            high_idx=mid;
+            if(low_idx-1>=0) {
+                while(nums[low_idx-1]==nums[low_idx]) 
+                {
+                    low_idx--;
+                    if(low_idx==0) break;
+                }
+            }
+            if(high_idx+1<nums.size()){
+            while(nums[high_idx+1]==nums[high_idx]) 
+            {
+                high_idx++;
+                if(high_idx==nums.size()-1) break;
+            }
+            }
+        }
+        ans.push_back(low_idx);
+        ans.push_back(high_idx);
+        
+        return ans;
+        
+        }
+    }
+};
+```
+
+### [Number of Occurences in a sorted array](https://www.codingninjas.com/studio/problems/occurrence-of-x-in-a-sorted-array_630456)
+
+```cpp
+int count(vector<int>& nums, int n, int target) {
+	int low=0,mid,high=nums.size()-1,pass=0,low_idx=-1,high_idx=-1;
+        vector <int> ans;
+        if(nums.size()==1 && nums[0]==target) {
+            ans.push_back(0);
+            ans.push_back(0);
+            return ans[1]-ans[0];;
+        }
+        else if(nums.size()==1 && nums[0]!=target) {
+            ans.push_back(-1);
+            ans.push_back(-1);
+            return  ans[1]-ans[0];;
+        }
+        else{
+        while(low<=high){
+            mid=(low+high)/2;
+            if(nums[mid]==target) {
+                pass=1;
+                break;
+            }
+            else if(nums[mid]<target) low=mid+1;
+            else high=mid-1;
+        }
+        if(pass==1) {
+            low_idx=mid;
+            high_idx=mid;
+            if(low_idx-1>=0) {
+                while(nums[low_idx-1]==nums[low_idx]) 
+                {
+                    low_idx--;
+                    if(low_idx==0) break;
+                }
+            }
+            if(high_idx+1<nums.size()){
+            while(nums[high_idx+1]==nums[high_idx]) 
+            {
+                high_idx++;
+                if(high_idx==nums.size()-1) break;
+            }
+            }
+            ans.push_back(low_idx);
+            ans.push_back(high_idx);
+            return (ans[1]-ans[0])+1;
+        }
+        ans.push_back(low_idx);
+        ans.push_back(high_idx);
+        return (ans[1]-ans[0]);
+        
+        }
+    
+}
+```
+
+### [Search in rotated sorted Array 1](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+
+```cpp
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int low=0,high=nums.size()-1,mid;
+        while(low<=high){
+            mid=(low+high)/2;
+            if (nums[mid]==target ) return mid;
+            else if(nums[low]<=nums[mid]) {
+                if(nums[low]<=target && target<=nums[mid]) high=mid-1;
+                else low=mid+1;
+            }
+            else{
+                if(nums[mid]<=target && target<=nums[high]) low=mid+1;
+                else high=mid-1;
+            }
+        }
+        return -1;
+    }
+};
+```
+
+### [Search in rotated sorted Array 2](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)
+```cpp
+class Solution {
+public:
+    bool search(vector<int>& nums, int target) {
+        int low=0,high=nums.size()-1,mid;
+        while(low<=high){
+            mid=(low+high)/2;
+            if (nums[mid]==target) return 1;
+            else if(nums[low]==nums[mid] && nums[mid]==nums[high]) {
+                 low++;
+                 high--;
+                 continue;
+            }
+            else if(nums[low]<=nums[mid]) {
+                if(nums[low]<=target && target<=nums[mid]) high=mid-1;
+                else low=mid+1;
+            }
+            else{
+                if(nums[mid]<=target && target<=nums[high]) low=mid+1;
+                else high=mid-1;
+            }
+        }
+        return 0;
+    }
+};
+```
+
+### [Find Minimum in rotated sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+```cpp
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int low=0,high=nums.size()-1,mid,mini=INT_MAX;
+        while(low<=high){
+            mid=(low+high)/2;
+             if(nums[low]<=nums[mid]) {
+                mini=min(mini, nums[low]);
+                low=mid+1;
+            }
+            else{
+                mini=min(mini, nums[mid]);
+                high=mid-1;
+            }
+        }
+        return mini;
+    }
+};
+```
+
+### [Find the rotated position in sorted array](https://www.codingninjas.com/studio/problems/rotation_7449070)
+THis problem solution is same as previous problem solution because by finding the lowest valued element index you are finding the rotated position.
+
+### [Single Element in Sorted Array](https://leetcode.com/problems/single-element-in-a-sorted-array/)
+```cpp
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+            int low=1,mid,high=nums.size()-2;
+            if(nums.size()==1) return nums[0];
+            else if(nums[0]!=nums[1]) return nums[0];
+            else if(nums[nums.size()-1]!=nums[nums.size()-2]) return nums[nums.size()-1];
+            while(low<=high)
+            {
+                mid=(low+high)/2;
+                if((nums[mid-1]!=nums[mid]) && (nums[mid+1]!=nums[mid]))
+                {
+                    return nums[mid];
+                }
+                else if((mid%2 == 0 && nums[mid]==nums[mid+1]) || (mid%2 == 1 && nums[mid]==nums[mid-1]))
+                {
+                    low=mid+1;
+                }
+                else high=mid-1;;
+            }
+            return -1;
+    }
+};
+```
